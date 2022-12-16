@@ -49,4 +49,16 @@ resource "aws_security_group" "nodejs" {
     Name  = "nodejs-sg"
     Owner = "chirag"
   }
+    scaling_policies = {
+    my-policy = {
+      policy_type               = "TargetTrackingScaling"
+      target_tracking_configuration = {
+        predefined_metric_specification = {
+          predefined_metric_type = "ASGAverageCPUUtilization"
+          resource_label         = "Label"
+        }
+        target_value = 70.0
+      }
+    }
+  }
 }
