@@ -1,0 +1,28 @@
+{
+    "variables": {
+      "instance_size": "t3a.small",
+      "ami_name": "Node-AMI-Chirag",
+      "region": "us-west-2"
+    },
+    "builders": [ 
+    {
+      "type": "amazon-ebs",
+      "access_key": "AKIAWEGFB4YZG2TF2T4B",
+      "secret_key": "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",
+      "region": "us-west-2",
+      "ami_name": "{{user `ami_name`}}",
+      "source_ami": "ami-0530ca8899fac469f",
+      "iam_instance_profile": "aadesh-CodeDeploy-CloudWatch",
+      "instance_type": "t3a.small",
+      "ssh_username": "ubuntu"
+    }
+  ],
+    "provisioners": [ 
+      {
+        "type": "shell",
+        "script": "application_dependencies.sh",
+        "pause_before": "10s",
+        "timeout": "10s"
+      }
+  ]
+  }
