@@ -25,8 +25,5 @@ Application Structure
 terraform/ - This folder contains terraform code to create thee-tier-infra in AWS.
 packer/ - This folder contains the code to create image for the backend i.e node js application.
 
-Error Handling
-In routes/api/index.js, we define a error-handling middleware for handling Mongoose's ValidationError. This middleware will respond with a 422 status code and format the response to have error messages the clients can understand
-
 Authentication
 You can export secret and access key to .env file and map the variables in provider.tf
