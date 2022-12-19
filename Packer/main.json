@@ -7,8 +7,8 @@
     "builders": [ 
     {
       "type": "amazon-ebs",
-      "access_key": "AKIAWEGFB4YZG2TF2T4B",
-      "secret_key": "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",
+      "access_key": "",
+      "secret_key": "",
       "region": "us-west-2",
       "ami_name": "{{user `ami_name`}}",
       "source_ami": "ami-0530ca8899fac469f",
