@@ -37,7 +37,7 @@ resource "aws_security_group" "nodejs" {
     from_port = 3000
     to_port   = 3000
     protocol  = "TCP"
-    security_groups = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.alb.id]
   }
   egress {
     from_port   = 0
