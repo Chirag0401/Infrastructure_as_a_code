@@ -34,7 +34,6 @@ resource "aws_security_group" "mongo" {
     from_port   = 27017
     to_port     = 27017
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
     self        = true
   }
 
