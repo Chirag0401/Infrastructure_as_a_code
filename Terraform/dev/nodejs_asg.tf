@@ -49,16 +49,18 @@ resource "aws_security_group" "nodejs" {
     Name  = "nodejs-sg"
     Owner = "chirag"
   }
-    scaling_policies = {
-    my-policy = {
-      policy_type               = "TargetTrackingScaling"
-      target_tracking_configuration = {
-        predefined_metric_specification = {
-          predefined_metric_type = "ASGAverageCPUUtilization"
-          resource_label         = "Label"
-        }
-        target_value = 70.0
-      }
+}
+resource "aws_autoscaling_policy" "asg-policy" {
+  count                     = 1
+  name                      = "Chirag-asg-cpu-policy"
+  autoscaling_group_name    = module.asg.autoscaling_group_name
+  estimated_instance_warmup = 60
+  policy_type               = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
+    target_value = 70.0
   }
 }
+
