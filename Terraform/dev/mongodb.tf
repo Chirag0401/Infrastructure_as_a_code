@@ -41,7 +41,7 @@ resource "aws_security_group" "mongo" {
     from_port   = 27017
     to_port     = 27017
     protocol    = "TCP"
-    security_groups = [aws_security_group.nodejs-sg.id]
+    security_groups = [aws_security_group.nodejs.id]
   }
 
   egress {
