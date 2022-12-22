@@ -39,3 +39,8 @@ sudo ./install auto
 # ls
 # cd node-express-realworld-example-app/
 # sudo npm install
+
+sudo useradd -m app -s /bin/bash
+sudo usermod --password $(openssl passwd -6 'app') app
+# echo "v3rystrongpassword" | passwd username --stdin
+echo "app  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/app

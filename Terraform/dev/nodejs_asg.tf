@@ -13,7 +13,7 @@ module "asg" {
   launch_template_name        = "chirag-lt"
   launch_template_description = "Launch template for nodejs"
   update_default_version      = true
-  image_id                    = "ami-0b44a4c4b894f12f4"
+  image_id                    = "ami-07ffb56d3b5b9b779"
   instance_type               = "t3a.small"
   iam_instance_profile_name   = "chirag-role"
   ebs_optimized               = true
@@ -37,7 +37,7 @@ resource "aws_security_group" "nodejs" {
     from_port = 3000
     to_port   = 3000
     protocol  = "TCP"
-    security_groups = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.alb.id]
   }
   egress {
     from_port   = 0
@@ -49,16 +49,18 @@ resource "aws_security_group" "nodejs" {
     Name  = "nodejs-sg"
     Owner = "chirag"
   }
-    scaling_policies = {
-    my-policy = {
-      policy_type               = "TargetTrackingScaling"
-      target_tracking_configuration = {
-        predefined_metric_specification = {
-          predefined_metric_type = "ASGAverageCPUUtilization"
-          resource_label         = "Label"
-        }
-        target_value = 70.0
-      }
+}
+
+resource "aws_autoscaling_policy" "asg-policy" {
+  count                     = 1
+  name                      = "Chirag-asg-cpu-policy"
+  autoscaling_group_name    = module.asg.autoscaling_group_name
+  estimated_instance_warmup = 60
+  policy_type               = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
+    target_value = 70.0
   }
 }

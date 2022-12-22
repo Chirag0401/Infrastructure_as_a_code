@@ -48,6 +48,6 @@ module "pritunl_instance" {
   user_data              = file("pritunl.sh")
   tags = {
     Terraform   = "true"
-    Environment = "stg"
+    Environment = "dev"
   }
 }
