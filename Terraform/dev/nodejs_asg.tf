@@ -50,10 +50,7 @@ resource "aws_security_group" "nodejs" {
     Owner = "chirag"
   }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 0bbd632ba2d879a3892595ca905918d6b2d6ad75
 resource "aws_autoscaling_policy" "asg-policy" {
   count                     = 1
   name                      = "Chirag-asg-cpu-policy"
