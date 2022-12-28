@@ -12,7 +12,6 @@ module "alb" {
       backend_protocol = "HTTP"
       backend_port     = 3000
       target_type      = "instance"
-      targets          = {}
       health_check = {
         enabled             = true
         interval            = 30
