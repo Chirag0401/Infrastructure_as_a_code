@@ -52,7 +52,6 @@ resource "aws_security_group" "nodejs" {
 }
 
 resource "aws_autoscaling_policy" "asg-policy" {
-  count                     = 1
   name                      = "Chirag-asg-cpu-policy"
   autoscaling_group_name    = module.asg.autoscaling_group_name
   estimated_instance_warmup = 60
